@@ -1,6 +1,18 @@
 from flask import Flask, jsonify
+from sqlalchemy import text
+
+from config import Config
+from extensions import db, migrate
+
 
 app = Flask(__name__)
+
+# Load configuration
+app.config.from_object(Config)
+
+# Initialize database and migration
+db.init_app(app)
+migrate.init_app(app, db)
 
 
 @app.route("/")
@@ -14,6 +26,23 @@ def test_api():
         "success": True,
         "message": "ABIT Student Hub API is working!"
     })
+
+
+@app.route("/api/db-test")
+def db_test():
+    try:
+        db.session.execute(text("SELECT 1"))
+
+        return jsonify({
+            "success": True,
+            "message": "MySQL connection is working!"
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
 
 
 if __name__ == "__main__":
