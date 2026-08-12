@@ -3,7 +3,7 @@ from sqlalchemy import text
 
 from config import Config
 from extensions import db, migrate
-
+from routes.notices import notices_bp
 
 app = Flask(__name__)
 
