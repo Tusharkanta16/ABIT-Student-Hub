@@ -5,6 +5,7 @@ from config import Config
 from extensions import db, migrate
 from routes.notices import notices_bp
 
+
 app = Flask(__name__)
 
 # Load configuration
@@ -13,6 +14,9 @@ app.config.from_object(Config)
 # Initialize database and migration
 db.init_app(app)
 migrate.init_app(app, db)
+
+# Register Notice Board routes
+app.register_blueprint(notices_bp)
 
 
 @app.route("/")
