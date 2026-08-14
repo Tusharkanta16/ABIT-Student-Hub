@@ -3,7 +3,9 @@ from sqlalchemy import text
 
 from config import Config
 from extensions import db, migrate
+
 from routes.notices import notices_bp
+from routes.study import study_bp
 
 
 app = Flask(__name__)
@@ -11,12 +13,15 @@ app = Flask(__name__)
 # Load configuration
 app.config.from_object(Config)
 
+
 # Initialize database and migration
 db.init_app(app)
 migrate.init_app(app, db)
 
-# Register Notice Board routes
+
+# Register feature routes
 app.register_blueprint(notices_bp)
+app.register_blueprint(study_bp)
 
 
 @app.route("/")
