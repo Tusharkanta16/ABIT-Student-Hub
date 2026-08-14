@@ -6,6 +6,7 @@ from extensions import db, migrate
 
 from routes.notices import notices_bp
 from routes.study import study_bp
+from routes.placements import placements_bp
 
 
 app = Flask(__name__)
@@ -22,6 +23,7 @@ migrate.init_app(app, db)
 # Register feature routes
 app.register_blueprint(notices_bp)
 app.register_blueprint(study_bp)
+app.register_blueprint(placements_bp)
 
 
 @app.route("/")
