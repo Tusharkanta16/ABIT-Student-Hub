@@ -3,15 +3,15 @@ from datetime import datetime
 from extensions import db
 
 
-class Event(db.Model):
-    __tablename__ = "events"
+class LostFoundItem(db.Model):
+    __tablename__ = "lost_found_items"
 
     id = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    title = db.Column(
+    item_name = db.Column(
         db.String(200),
         nullable=False
     )
@@ -21,29 +21,35 @@ class Event(db.Model):
         nullable=False
     )
 
-    event_type = db.Column(
+    category = db.Column(
         db.String(100),
         nullable=False
     )
 
-    venue = db.Column(
+    location = db.Column(
         db.String(200),
         nullable=False
     )
 
-    event_date = db.Column(
-        db.DateTime,
+    item_type = db.Column(
+        db.String(50),
         nullable=False
     )
 
-    organizer = db.Column(
+    reported_by = db.Column(
         db.String(150),
         nullable=False
     )
 
-    registration_link = db.Column(
-        db.String(500),
-        nullable=True
+    contact_email = db.Column(
+        db.String(200),
+        nullable=False
+    )
+
+    status = db.Column(
+        db.String(50),
+        default="Open",
+        nullable=False
     )
 
     created_at = db.Column(

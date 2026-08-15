@@ -7,6 +7,11 @@ from extensions import db, migrate
 from routes.notices import notices_bp
 from routes.study import study_bp
 from routes.placements import placements_bp
+from routes.complaints import complaints_bp
+from routes.events import events_bp
+from routes.marketplace import marketplace_bp
+from routes.mentor import mentor_bp
+from routes.lost_found import lost_found_bp
 
 
 app = Flask(__name__)
@@ -24,6 +29,11 @@ migrate.init_app(app, db)
 app.register_blueprint(notices_bp)
 app.register_blueprint(study_bp)
 app.register_blueprint(placements_bp)
+app.register_blueprint(complaints_bp)
+app.register_blueprint(events_bp)
+app.register_blueprint(marketplace_bp)
+app.register_blueprint(mentor_bp)
+app.register_blueprint(lost_found_bp)
 
 
 @app.route("/")
