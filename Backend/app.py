@@ -12,6 +12,7 @@ from routes.events import events_bp
 from routes.marketplace import marketplace_bp
 from routes.mentor import mentor_bp
 from routes.lost_found import lost_found_bp
+from routes.skill_exchange import skill_exchange_bp
 
 
 app = Flask(__name__)
@@ -34,6 +35,7 @@ app.register_blueprint(events_bp)
 app.register_blueprint(marketplace_bp)
 app.register_blueprint(mentor_bp)
 app.register_blueprint(lost_found_bp)
+app.register_blueprint(skill_exchange_bp)
 
 
 @app.route("/")
