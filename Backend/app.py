@@ -2,7 +2,12 @@ from flask import Flask, jsonify
 from sqlalchemy import text
 
 from config import Config
-from extensions import db, migrate
+from extensions import db, migrate, jwt
+from models.user import User
+from models.notice import Notice
+from models.study import Study
+from models.placement import Placement
+from models.complaint import Complaint
 
 from routes.notices import notices_bp
 from routes.study import study_bp
@@ -13,6 +18,8 @@ from routes.marketplace import marketplace_bp
 from routes.mentor import mentor_bp
 from routes.lost_found import lost_found_bp
 from routes.skill_exchange import skill_exchange_bp
+from routes.auth import auth_bp
+from routes.users import users_bp  # Import the users blueprint
 
 
 app = Flask(__name__)
@@ -24,7 +31,7 @@ app.config.from_object(Config)
 # Initialize database and migration
 db.init_app(app)
 migrate.init_app(app, db)
-
+jwt.init_app(app)
 
 # Register feature routes
 app.register_blueprint(notices_bp)
@@ -36,7 +43,8 @@ app.register_blueprint(marketplace_bp)
 app.register_blueprint(mentor_bp)
 app.register_blueprint(lost_found_bp)
 app.register_blueprint(skill_exchange_bp)
-
+app.register_blueprint(auth_bp)
+app.register_blueprint(users_bp)  # Register the users blueprint
 
 @app.route("/")
 def home():
