@@ -5,7 +5,7 @@ from config import Config
 from extensions import db, migrate, jwt
 from models.user import User
 from models.notice import Notice
-from models.study import Study
+from models.study import StudyNote
 from models.placement import Placement
 from models.complaint import Complaint
 
